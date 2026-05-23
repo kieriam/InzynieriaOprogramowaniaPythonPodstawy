@@ -28,13 +28,22 @@ def verify_pesel(pesel: str) -> int:
     Returns:
         int: 1 jeśli numer jest poprawny, 0 jeśli nie.
     """
-    ### TUTAJ PODAJ ROZWIĄZANIE ZADANIA
+    waga = [1,3,7,9,1,3,7,9,1,3]
 
-    ### return 0 - powinno być zmienione i zwrócić prawdziwy wynik (zgodny z oczekiwaniami)
-    return 0
+    sumaM = 0
+
+    for i in range(10):
+        sumaM = sumaM + int(pesel[i])*waga[i]
+    
+    kontrola = (10 - (sumaM % 10)) % 10
+
+    if kontrola == int(pesel[10]):
+        return 1 
+    else:
+        return 0
 
 
 # Przykładowe wywołanie:
 if __name__ == "__main__":
-    pesel_input = "97082123152"
+    pesel_input = "97563838244"
     print(verify_pesel(pesel_input))  # Oczekiwane wyjście: 0
